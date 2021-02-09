@@ -23,7 +23,20 @@ module.exports = {
     schema.validate({ username, email, password, repeat_password })
 
     await query('INSERT INTO User (username, email, password) values(?, ?, ?);', [username, email, password])
-    const [[user]] = await query('SELECT username, email FROM User WHERE email = ?', [email])
+    const [[user]] = await query('SELECT id, username, email FROM User WHERE email = ?', [email])
     return user
+  },
+
+  async getAll() {
+    const [users] = await query('SELECT id, username, email FROM User;', [])
+    return users
+  },
+  async getById(id) {
+    const [[user]] = await query('SELECT id, username, email FROM User WHERE id = ?;', [id])
+    return user
+  },
+  async deleteById(id) {
+    const res = await query('DELETE FROM User WHERE id = ?;', [id])
+    return 1
   }
 }
