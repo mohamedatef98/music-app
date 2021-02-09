@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mohamedatef98/music-app/issues"
   },
-  "homepage": "https://github.com/mohamedatef98/music-app#readme"
+  "homepage": "https://github.com/mohamedatef98/music-app#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
 }
