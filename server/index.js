@@ -1,8 +1,11 @@
 require('dotenv').config()
-const { connection } = require('./db/db_connection')
-const User = require('./db/models/User')
+const { readFile } = require('fs-extra')
+const { join } = require('path')
+const ImageFile = require('./db/models/ImageFile')
 
 async function main () {
-  console.log(await User.getAll())
+  const data = await readFile(join(__dirname, '../', 'package.json'))
+  const res = await ImageFile.create({ name: 'another.json', file: data })
+  console.log(res)
 }
 main ()
