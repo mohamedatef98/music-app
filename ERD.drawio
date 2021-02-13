@@ -1,4 +1,4 @@
-<mxfile host="65bd71144e" modified="2021-02-13T18:15:23.118Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.53.1 Chrome/87.0.4280.141 Electron/11.2.1 Safari/537.36" etag="HPIZoT6Ih9MTD1t8rvyh" version="14.2.4" type="embed">
+<mxfile host="65bd71144e" modified="2021-02-13T18:17:21.558Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.53.1 Chrome/87.0.4280.141 Electron/11.2.1 Safari/537.36" etag="9MWBgIviMCV5E8Oy88l1" version="14.2.4" type="embed">
     <diagram name="Page-1" id="9f46799a-70d6-7492-0946-bef42562c5a5">
         <mxGraphModel dx="808" dy="295" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#ffffff" math="0" shadow="0">
             <root>
@@ -55,17 +55,20 @@
                 <mxCell id="dPTJl3S5OsdJ7ELAq9D5-18" value="SingleSong" style="swimlane;html=1;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=none;fontFamily=Verdana;fontSize=12;fontColor=#000000;" parent="1" vertex="1">
                     <mxGeometry x="520" y="584" width="160" height="190" as="geometry"/>
                 </mxCell>
-                <mxCell id="dPTJl3S5OsdJ7ELAq9D5-19" value="&lt;b&gt;PrimaryKey(name, artistId)&lt;/b&gt;" style="text;html=1;strokeColor=#6c8ebf;fillColor=#dae8fc;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#000000;" parent="dPTJl3S5OsdJ7ELAq9D5-18" vertex="1">
-                    <mxGeometry y="26" width="160" height="44" as="geometry"/>
+                <mxCell id="dPTJl3S5OsdJ7ELAq9D5-19" value="&lt;b&gt;&lt;font color=&quot;#000000&quot;&gt;FK songId&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="dPTJl3S5OsdJ7ELAq9D5-18" vertex="1">
+                    <mxGeometry y="26" width="160" height="24" as="geometry"/>
                 </mxCell>
                 <mxCell id="dPTJl3S5OsdJ7ELAq9D5-27" value="&lt;b&gt;FK artistId&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#000000;" parent="dPTJl3S5OsdJ7ELAq9D5-18" vertex="1">
-                    <mxGeometry y="70" width="160" height="26" as="geometry"/>
+                    <mxGeometry y="50" width="160" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="dPTJl3S5OsdJ7ELAq9D5-72" value="&lt;b&gt;FK imageId&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#000000;" parent="dPTJl3S5OsdJ7ELAq9D5-18" vertex="1">
-                    <mxGeometry y="96" width="160" height="26" as="geometry"/>
+                    <mxGeometry y="76" width="160" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="dPTJl3S5OsdJ7ELAq9D5-66" value="Date releaseDate" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontColor=#000000;" parent="dPTJl3S5OsdJ7ELAq9D5-18" vertex="1">
-                    <mxGeometry y="122" width="160" height="26" as="geometry"/>
+                    <mxGeometry y="102" width="160" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;b&gt;&lt;font color=&quot;#000000&quot;&gt;Primary Key (songId)&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="dPTJl3S5OsdJ7ELAq9D5-18">
+                    <mxGeometry y="128" width="160" height="24" as="geometry"/>
                 </mxCell>
                 <mxCell id="dPTJl3S5OsdJ7ELAq9D5-24" value="AlbumSong" style="swimlane;html=1;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=none;fontFamily=Verdana;fontSize=12;fontColor=#000000;" parent="1" vertex="1">
                     <mxGeometry x="300" y="634" width="160" height="140" as="geometry"/>
