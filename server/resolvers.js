@@ -17,8 +17,11 @@ module.exports = {
     name({ songId }) {
       return Song.getById(songId).then(({ name }) => name)
     },
+    audioFileId({ songId }) {
+      return Song.getById(songId).then(({ audioFileId }) => audioFileId)
+    },
     artist({ artistId }) {
       return Artist.getById(artistId)
     }
-  }
+  },
 }
