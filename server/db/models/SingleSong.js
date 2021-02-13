@@ -35,5 +35,12 @@ module.exports = {
   async getAll() {
     const [songs] = await query('SELECT songId, artistId, imageFileId, releaseDate FROM SingleSong;', [])
     return songs
+  },
+  async getByArtistId(artistId) {
+    const [singles] = await query(
+      'SELECT songId, artistId, imageFileId, releaseDate FROM SingleSong WHERE artistId = ?;',
+      [artistId]
+    )
+    return singles
   }
 }

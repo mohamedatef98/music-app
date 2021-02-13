@@ -1,11 +1,12 @@
 require('dotenv').config()
-const { readFile } = require('fs-extra')
-const { join } = require('path')
-const ImageFile = require('./db/models/ImageFile')
+const { ApolloServer } = require('apollo-server')
+const resolvers = require('./resolvers')
+const typeDefs = require('./schema')
 
-async function main () {
-  const data = await readFile(join(__dirname, '../', 'package.json'))
-  const res = await ImageFile.create({ name: 'another.json', file: data })
-  console.log(res)
-}
-main ()
+const server = new ApolloServer({
+  typeDefs,
+  resolvers
+})
+
+server.listen()
+  .then(({ url }) => console.log(`Graphql server is running at ${url}`))
