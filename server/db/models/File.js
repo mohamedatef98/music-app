@@ -17,8 +17,8 @@ const schema = Joi.object({
 module.exports = {
   async create({ name, directory, file }) {
     schema.validate({ name, directory, file })
-
     createFile(directory, name, file)
+    
     const [results] = await query('INSERT INTO File (name, directory) values(?, ?);', [name, directory])
     const [[fileRecord]] = await query('SELECT id, name, directory FROM File WHERE id = ?', [results.insertId])
     return fileRecord
