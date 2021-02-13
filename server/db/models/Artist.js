@@ -5,7 +5,7 @@ const schema = Joi.object({
   name: Joi.string()
     .required()
     .alphanum()
-    .min(5)
+    .min(3)
     .max(30),
 
   imageFileId: [
