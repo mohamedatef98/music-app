@@ -4,9 +4,9 @@ module.exports = {
         artistId INT NOT NULL,
         imageFileId INT UNIQUE,
         releaseDate Date,
-        FOREIGN KEY (songId) REFERENCES Song(id),
-        FOREIGN KEY (artistId) REFERENCES Artist(id),
-        FOREIGN KEY (imageFileId) REFERENCES ImageFile(fileId)
+        FOREIGN KEY (songId) REFERENCES Song(id) ON DELETE CASCADE,
+        FOREIGN KEY (artistId) REFERENCES Artist(id) ON DELETE CASCADE,
+        FOREIGN KEY (imageFileId) REFERENCES ImageFile(fileId) ON DELETE SET NULL
     );`,
     down: 'DROP TABLE SingleSong;'
 }
