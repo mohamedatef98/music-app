@@ -27,5 +27,14 @@ module.exports = {
   async getById(id) {
     const [[song]] = await query('SELECT id, name, audioFileId FROM Song WHERE id = ?;', [id])
     return song
+  },
+  async getAudioFileById(id) {
+    const [[audioFile]] = await query(
+      `SELECT * FROM File WHERE id IN (
+        SELECT audioFileId FROM Song WHERE id = ?
+      );`,
+      [id]
+    )
+    return audioFile
   }
 }

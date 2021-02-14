@@ -42,5 +42,14 @@ module.exports = {
       [artistId]
     )
     return singles
+  },
+  async getImageFileById(id) {
+    const [[imageFile]] = await query(
+      `SELECT * FROM File WHERE id IN (
+        SELECT imageFileId FROM SingleSong WHERE id = ?
+      )`,
+      [id]
+    )
+    return imageFile
   }
 }

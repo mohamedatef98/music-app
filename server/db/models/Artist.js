@@ -30,5 +30,14 @@ module.exports = {
   async getById(id) {
     const [[artist]] = await query('SELECT id, name, imageFileId FROM Artist WHERE id = ?;', [id])
     return artist
+  },
+  async getImageFileById(id) {
+    const [[imageFile]] = await query(
+      `SELECT * FROM File WHERE id IN (
+        SELECT imageFileId FROM Artist WHERE id = ?
+      );`,
+      [id]
+    )
+    return imageFile
   }
 }

@@ -4,21 +4,27 @@ module.exports = gql`
 type Artist {
   id: ID!
   name: String!
-  imageFileId: String
+  imageFile: File
+}
+
+type File {
+  id: ID!
+  name: String!
+  directory: String!
 }
 
 interface Song {
   id: ID!
   name: String!
-  audioFileId: String!
-  imageFileId: String
+  audioFile: File!
+  imageFile: File
 }
 
 type SingleSong implements Song {
   id: ID!
   name: String!
-  audioFileId: String!
-  imageFileId: String
+  audioFile: File!
+  imageFile: File
   artist: Artist!
   releaseDate: String!
 }

@@ -15,13 +15,17 @@ module.exports = {
       return songId
     },
     name({ songId }) {
-      return Song.getById(songId).then(({ name }) => name)
-    },
-    audioFileId({ songId }) {
-      return Song.getById(songId).then(({ audioFileId }) => audioFileId)
+      return Song.getById(songId)
+        .then(({ name }) => name)
     },
     artist({ artistId }) {
       return Artist.getById(artistId)
+    },
+    audioFile({ songId }) {
+      return Song.getAudioFileById(songId)
+    },
+    imageFile({ songId }) {
+      return SingleSong.getImageFileById(songId)
     }
   },
   Song: {
@@ -29,6 +33,11 @@ module.exports = {
       if(song.artistId) return 'SingleSong'
       else if(song.albumId) return 'AlbumSong'
       else return null
+    }
+  },
+  Artist: {
+    imageFile({ id }) {
+      return Artist.getImageFileById(id)
     }
   }
 }
