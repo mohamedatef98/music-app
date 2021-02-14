@@ -1,12 +1,18 @@
 require('dotenv').config()
-const { ApolloServer } = require('apollo-server')
+const express = require('express')
+const { ApolloServer } = require('apollo-server-express')
 const resolvers = require('./resolvers')
 const typeDefs = require('./schema')
+const rootDir = require('./fs/rootDir')
+
+const app = express()
+app.use(express.static(rootDir))
 
 const server = new ApolloServer({
   typeDefs,
   resolvers
 })
 
-server.listen()
-  .then(({ url }) => console.log(`Graphql server is running at ${url}`))
+server.applyMiddleware({ app })
+
+app.listen({ port: 4000 }, () => console.log(`Graphql server is running at port ${4000}`))

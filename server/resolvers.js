@@ -24,4 +24,11 @@ module.exports = {
       return Artist.getById(artistId)
     }
   },
+  Song: {
+    __resolveType(song) {
+      if(song.artistId) return 'SingleSong'
+      else if(song.albumId) return 'AlbumSong'
+      else return null
+    }
+  }
 }
