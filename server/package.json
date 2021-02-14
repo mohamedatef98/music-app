@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "migration": "node server/db/migrations"
+    "migration": "node server/db/migrations",
+    "dev": "nodemon node ./index"
   },
   "repository": {
     "type": "git",
@@ -27,5 +28,8 @@
     "joi": "^17.4.0",
     "mysql": "^2.18.1",
     "mysql-migrations": "^1.0.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
