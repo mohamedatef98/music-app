@@ -46,7 +46,7 @@ module.exports = {
   async getImageFileById(id) {
     const [[imageFile]] = await query(
       `SELECT * FROM File WHERE id IN (
-        SELECT imageFileId FROM SingleSong WHERE id = ?
+        SELECT imageFileId FROM SingleSong WHERE songId = ?
       )`,
       [id]
     )
