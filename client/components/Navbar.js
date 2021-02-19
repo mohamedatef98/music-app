@@ -10,11 +10,14 @@ const Navbar = () => {
   return <nav className={classes.navContainer}>
     <AppBar position='static'>
       <Toolbar classes={{ root: classes.nav }}>
-        <Typography variant='h4' classes={{ root: classes.title }}>
-          <Link href='/'>
-            {title}
-          </Link>
-        </Typography>
+        <div className={classes.iconContainer}>
+          <img src='/icon.png' alt='Musicify icon' className={classes.icon} />
+          <Typography variant='h5' classes={{ root: classes.title }}>
+            <Link href='/'>
+              {title}
+            </Link>
+          </Typography>
+        </div>
         <DarkModeToggler />
       </Toolbar>
     </AppBar>
@@ -33,6 +36,17 @@ const useStyles = makeStyles(theme => ({
       textDecoration: 'none',
       color: 'inherit'
     }
+  },
+  iconContainer: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  icon: {
+    height: '56px',
+    width: '56px',
+    backgroundImage: 'radial-gradient(#6d166680, #00000000)',
+    borderRadius: '50%',
+    marginRight: '10px'
   }
 }))
 
