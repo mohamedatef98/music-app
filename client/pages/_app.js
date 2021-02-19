@@ -4,18 +4,21 @@ import Constants, { contextValue as defaultContextValue } from '../context/Const
 import themeConfig from '../theme'
 
 function MyApp({ Component, pageProps }) {
-  const changeTheme = useCallback(theme => {
-    setContextValue(contextValue => ({ ...contextValue, theme }))
+  const toggleTheme = useCallback(() => {
+    setContextValue(contextValue => ({
+      ...contextValue,
+      theme: contextValue.theme == 'light' ? 'dark' : 'light'
+    }))
   }, [])
 
-  const [contextValue, setContextValue] = useState({ ...defaultContextValue, changeTheme })
+  const [contextValue, setContextValue] = useState({ ...defaultContextValue, toggleTheme })
 
   useEffect(() => {
     const { matches: prefersDark } = matchMedia('(prefers-color-scheme: dark)')
-    if(prefersDark) setContextValue(ctx => ({ ...ctx, theme: 'dark' }))
+    if (prefersDark) setContextValue(ctx => ({ ...ctx, theme: 'dark' }))
   }, [])
 
-  const theme = useMemo(() => {      
+  const theme = useMemo(() => {
     return createMuiTheme({
       palette: {
         type: contextValue.theme
