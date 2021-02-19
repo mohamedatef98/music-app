@@ -1,7 +1,7 @@
+import { makeStyles } from '@material-ui/core'
 import { useContext } from 'react'
 import Layout from '../components/Layout'
 import Constants from '../context/Constants'
-import styles from '../styles/Home.module.css'
 
 export default function Home() {
   const ctx = useContext(Constants)
@@ -14,3 +14,7 @@ export default function Home() {
     </Layout>
   )
 }
+
+const useStyles = makeStyles(theme => ({
+
+}))

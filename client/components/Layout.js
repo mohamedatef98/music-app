@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import Head from 'next/head'
-import styles from '../styles/Layout.module.css'
 import Constants from '../context/Constants'
+import Navbar from './Navbar'
 
 export default function Layout({ children }) {
   const { title } = useContext(Constants)
@@ -12,7 +12,8 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <main style={styles.main}>
+        <Navbar />
+        <main>
           {children}
         </main>
       </div>
