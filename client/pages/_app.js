@@ -2,7 +2,6 @@ import { createMuiTheme, CssBaseline, MuiThemeProvider, useMediaQuery } from '@m
 import { useCallback, useEffect, useState, useMemo } from 'react'
 import Constants, { contextValue as defaultContextValue } from '../context/Constants'
 import themeConfig from '../theme'
-import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   const changeTheme = useCallback(theme => {
