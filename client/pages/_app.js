@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState, useMemo } from 'react'
 import Constants, { contextValue as defaultContextValue } from '../context/Constants'
 import themeConfig from '../theme'
 
+import 'swiper/swiper.min.css'
+
 function MyApp({ Component, pageProps }) {
   const toggleTheme = useCallback(() => {
     setContextValue(contextValue => ({

@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { makeStyles, Typography } from '@material-ui/core'
 import Link from 'next/link'
 
-export default function Card({ src, alt, text, variant = 'h6', href = '' }) {
+const Card = ({ src, alt, text, variant = 'h6', href = '' }) => {
   const classes = useStyles()
   return <Link href={href}>
     <a className={classes.link}>
@@ -19,6 +19,8 @@ export default function Card({ src, alt, text, variant = 'h6', href = '' }) {
     </a>
   </Link>
 }
+
+export default Card
 
 const useStyles = makeStyles(theme => ({
   link: {

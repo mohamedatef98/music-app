@@ -1,49 +1,37 @@
 import { makeStyles, Typography, Grid, Fab } from '@material-ui/core'
-import React, { useRef, useCallback, useState } from 'react'
+import React, { useRef, useState, useCallback, useLayoutEffect } from 'react'
 import Card from './Card'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import { readPxs, writePxs } from '../utils/styles'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import useWindowSize from '../hooks/useWindowSize'
 
 export default function Carousel({
   title = '',
   data = []
 }) {
   const classes = useStyles()
-  const gridRootRef = useRef(null)
-  const containerRef = useRef(null)
-  const [noLeft, setNoLeft] = useState(true)
-  const [noRight, setNoRight] = useState(false)
+  const { width: windowWidth } = useWindowSize()
+  const gridContainerRef = useRef(null)
+  const [numberOfSlide, setNumberOfSlides] = useState(0)
+  const swiperRef = useRef(null)
+
+  useLayoutEffect(() => {
+    const containerWidth = gridContainerRef.current.getBoundingClientRect().width
+    const cardWidth = 220
+    const numberOfAllSlides = Number(containerWidth / cardWidth).toFixed(1)
+    setNumberOfSlides(numberOfAllSlides)
+  }, [windowWidth, gridContainerRef.current])
 
   const handleRightClick = useCallback(() => {
-    if (gridRootRef.current && containerRef.current) {
-      const grid = gridRootRef.current
-      const container = containerRef.current
-      const { width: gridWidth } = grid.getBoundingClientRect()
-      const { width: containerWidth } = container.getBoundingClientRect()
-      const currentleftValue = readPxs(grid, 'left')
-      const { width: childWidth } = grid.children[0].getBoundingClientRect()
-      const toBeSubtractedLeft = Math.floor(containerWidth / childWidth) * childWidth
-      writePxs(grid, 'left', currentleftValue - toBeSubtractedLeft)
-      setNoLeft(false)
-      if (currentleftValue - toBeSubtractedLeft - containerWidth <= -gridWidth) setNoRight(true)
-    }
-  }, [gridRootRef.current, containerRef.current])
+    const swiper = swiperRef.current.swiper
+    swiper.slideNext()
+  }, [swiperRef.current])
 
   const handleLeftClick = useCallback(() => {
-    if (gridRootRef.current) {
-      const grid = gridRootRef.current
-      const container = containerRef.current
-      const { width: gridWidth } = grid.getBoundingClientRect()
-      const { width: containerWidth } = container.getBoundingClientRect()
-      const currentleftValue = readPxs(grid, 'left')
-      const { width: childWidth } = grid.children[0].getBoundingClientRect()
-      const toBeAddedLeft = Math.floor(containerWidth / childWidth) * childWidth
-      writePxs(grid, 'left', currentleftValue + toBeAddedLeft)
-      setNoRight(false)
-      if (currentleftValue + toBeAddedLeft >= 0) setNoLeft(true)
-    }
-  }, [gridRootRef.current, containerRef.current])
+    const swiper = swiperRef.current.swiper
+    swiper.slidePrev()
+  }, [swiperRef.current])
 
   return <section>
     {
@@ -54,41 +42,26 @@ export default function Carousel({
       )
     }
     <div className={classes.carouselContainer}>
-      {
-        noLeft == false && (
-          <Fab classes={{ root: classes.leftButton }} color='secondary' size='small' onClick={handleLeftClick}>
-            <ChevronLeftIcon />
-          </Fab>
-        )
-      }
-      <div className={classes.gridContainer} ref={containerRef}>
-        <Grid container
-          spacing={2}
-          wrap='nowrap'
-          justify='flex-start'
-          classes={{ root: classes.gridRoot }}
-          ref={gridRootRef}
-        >
-          {data.map((item) => <Grid
-            key={item.key}
-            item
-          >
+      <Fab classes={{ root: classes.leftButton }} color='secondary' size='small' onClick={handleLeftClick}>
+        <ChevronLeftIcon />
+      </Fab>
+
+      <div className={classes.gridContainer} ref={gridContainerRef}>
+        <Swiper slidesPerView={numberOfSlide} ref={swiperRef}>
+          {data.map((item) => <SwiperSlide key={item.key}>
             <Card
               alt={item.alt}
               href={item.href}
               src={item.src}
               text={item.text}
             />
-          </Grid>)}
-        </Grid>
+          </SwiperSlide>)}
+        </Swiper>
       </div>
-      {
-        noRight == false && (
-          <Fab classes={{ root: classes.rightButton }} color='secondary' size='small' onClick={handleRightClick}>
-            <ChevronRightIcon />
-          </Fab>
-        )
-      }
+
+      <Fab classes={{ root: classes.rightButton }} color='secondary' size='small' onClick={handleRightClick}>
+        <ChevronRightIcon />
+      </Fab>
     </div>
   </section >
 }
@@ -115,14 +88,14 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     left: 0,
     top: '50%',
-    transform: 'translateY(-50%) translateX(-50%)',
+    transform: 'translateY(-50%) translateX(-30%)',
     zIndex: 20
   },
   rightButton: {
     position: 'absolute',
     right: 0,
     top: '50%',
-    transform: 'translateY(-50%) translateX(50%)',
+    transform: 'translateY(-50%) translateX(30%)',
     zIndex: 20
   }
 }))
