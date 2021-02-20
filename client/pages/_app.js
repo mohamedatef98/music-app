@@ -1,4 +1,5 @@
 import { createMuiTheme, CssBaseline, MuiThemeProvider, useMediaQuery } from '@material-ui/core'
+import Head from 'next/head'
 import { useCallback, useEffect, useState, useMemo } from 'react'
 import Constants, { contextValue as defaultContextValue } from '../context/Constants'
 import themeConfig from '../theme'
@@ -20,19 +21,29 @@ function MyApp({ Component, pageProps }) {
 
   const theme = useMemo(() => {
     return createMuiTheme({
+      ...themeConfig,
       palette: {
+        ...themeConfig.palette,
         type: contextValue.theme
       }
-    }, themeConfig)
+    })
   }, [contextValue.theme])
 
   return (
-    <Constants.Provider value={contextValue}>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...pageProps} />
-      </MuiThemeProvider>
-    </Constants.Provider>
+    <>
+      <Head>
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'
+        />
+      </Head>
+      <Constants.Provider value={contextValue}>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </MuiThemeProvider>
+      </Constants.Provider>
+    </>
   )
 }
 
